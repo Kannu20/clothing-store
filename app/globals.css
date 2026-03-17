@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+    --font-dm-sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background-color: #1a1a1a;
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #faf8f5;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #a8a29e;
+    border-radius: 999px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-stone-900 text-white
+           font-body font-medium tracking-widest uppercase text-xs px-8 py-4
+           transition-all duration-300 hover:bg-stone-700 active:scale-[0.98];
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-stone-900 text-stone-900
+           font-body font-medium tracking-widest uppercase text-xs px-8 py-4
+           transition-all duration-300 hover:bg-stone-900 hover:text-white active:scale-[0.98];
+  }
+
+  .section-title {
+    @apply font-display text-4xl md:text-5xl lg:text-6xl font-light text-stone-900 leading-tight;
+  }
+
+  .section-subtitle {
+    @apply font-body text-xs tracking-[0.3em] uppercase text-stone-400 mb-4;
+  }
+
+  .input-field {
+    @apply w-full border-b border-stone-300 bg-transparent py-3 font-body text-sm text-stone-900
+           placeholder:text-stone-400 focus:border-stone-900 focus:outline-none transition-colors;
+  }
+
+  .product-card-img {
+    @apply w-full h-full object-cover transition-transform duration-700 group-hover:scale-105;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-marquee {
+    animation: marquee 35s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
