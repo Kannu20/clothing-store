@@ -1,8 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
 import { Truck, RotateCcw, Clock, MapPin, Package, CheckCircle, AlertCircle, MessageCircle } from "lucide-react";
-import Navbar from "../../components/layout/Navbar";
-import Footer from "../../components/layout/Footer";
+import Navbar from "/components/layout/Navbar";
+import Footer from "/components/layout/Footer";
 
 const shippingOptions = [
   {
