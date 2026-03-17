@@ -1,3 +1,4 @@
+// FAQs page with category filters, search, and animated expand/collapse answers.
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
