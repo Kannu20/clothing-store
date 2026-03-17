@@ -89,26 +89,56 @@ export default function Footer() {
             <h4 className="font-body text-xs tracking-[0.25em] uppercase text-white mb-6">
               Help
             </h4>
+
             <ul className="space-y-3">
-              {[
-                "Size Guide",
-                "Shipping & Returns",
-                "Order Tracking",
-                "FAQs",
-                "Contact Us",
-              ].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="font-body text-sm text-stone-400 hover:text-white transition-colors"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
+
+              <li>
+                <a
+                  href="/size-guide"
+                  className="font-body text-sm text-stone-400 hover:text-white transition-colors"
+                >
+                  Size Guide
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/shipping-returns"
+                  className="font-body text-sm text-stone-400 hover:text-white transition-colors"
+                >
+                  Shipping & Returns
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/order-tracking"
+                  className="font-body text-sm text-stone-400 hover:text-white transition-colors"
+                >
+                  Order Tracking
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/faqs"
+                  className="font-body text-sm text-stone-400 hover:text-white transition-colors"
+                >
+                  FAQs
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/contact"
+                  className="font-body text-sm text-stone-400 hover:text-white transition-colors"
+                >
+                  Contact Us
+                </a>
+              </li>
+
             </ul>
           </div>
-
           {/* Contact */}
           <div>
             <h4 className="font-body text-xs tracking-[0.25em] uppercase text-white mb-6">
