@@ -998,7 +998,7 @@ const STEPS = ["Cart", "Delivery", "Payment"];
 export default function CheckoutPage() {
   const { cart, cartTotal, clearCart } = useStore();
   const total      = cartTotal();
-  const shipping   = total >= 2999 ? 0 : 199;
+  const shipping   = total >= 129999 ? 0 : 199;
   const grandTotal = total + shipping;
 
   const razorpayReady = useRazorpay();
