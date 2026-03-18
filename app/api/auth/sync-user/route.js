@@ -3,9 +3,9 @@
 // Verifies the Firebase ID token, then upserts the user in MongoDB
 
 import { NextResponse } from "next/server";
-import { adminAuth }    from "@/lib/firebaseAdmin";
-import connectDB        from "@/lib/mongodb";
-import User             from "@/models/User";
+import { adminAuth }    from "/lib/firebaseAdmin";
+import connectDB        from "/lib/mongodb";
+import User             from "/models/User";
 
 export async function POST(request) {
   try {

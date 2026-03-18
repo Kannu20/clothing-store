@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { User, Package, Heart, MapPin, LogOut, ShieldCheck, ChevronRight, AlertCircle } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import { useAuth } from "@/contexts/AuthContext";
-import { useStore } from "@/lib/store";
+import Navbar from "/components/layout/Navbar";
+import Footer from "/components/layout/Footer";
+import { useAuth } from "/contexts/AuthContext";
+import { useStore } from "/lib/store";
 
 export default function AccountPage() {
   const router = useRouter();

@@ -1,5 +1,6 @@
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "/contexts/AuthContext";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -26,7 +27,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
       <body className="font-body bg-white text-stone-900 antialiased">
+         <AuthProvider>
         {children}
+         </AuthProvider>
       </body>
     </html>
   );
