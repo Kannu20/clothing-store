@@ -2,9 +2,9 @@
 // Returns the full MongoDB user document for the authenticated Firebase user
 
 import { NextResponse } from "next/server";
-import { adminAuth }    from "@/lib/firebaseAdmin";
-import connectDB        from "@/lib/mongodb";
-import User             from "@/models/User";
+import { adminAuth }    from "/lib/firebaseAdmin";
+import connectDB        from "/lib/mongodb";
+import User             from "/models/User";
 
 export async function GET(request) {
   try {
