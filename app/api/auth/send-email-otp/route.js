@@ -6,10 +6,10 @@
 
 import { NextResponse }  from "next/server";
 import nodemailer        from "nodemailer";
-import { adminAuth }     from "@/lib/firebaseAdmin";
-import connectDB         from "@/lib/mongodb";
-import User              from "@/models/User";
-import OtpToken          from "@/models/OtpToken";
+import { adminAuth }     from "/lib/firebaseAdmin";
+import connectDB         from "/lib/mongodb";
+import User              from "/models/User";
+import OtpToken          from "/models/OtpToken";
 
 // ── Generate a random 6-digit OTP ────────────────────────────────────────────
 function generateOtp() {

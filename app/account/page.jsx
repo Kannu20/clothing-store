@@ -1700,13 +1700,13 @@ import {
   ChevronRight, AlertCircle, Phone, CheckCircle2,
   X, RefreshCw, KeyRound, Mail
 } from "lucide-react";
-import Navbar   from "@/components/layout/Navbar";
-import Footer   from "@/components/layout/Footer";
-import { useAuth }  from "@/contexts/AuthContext";
-import { useStore } from "@/lib/store";
+import Navbar   from "/components/layout/Navbar";
+import Footer   from "/components/layout/Footer";
+import { useAuth }  from "/contexts/AuthContext";
+import { useStore } from "/lib/store";
 
 // Firebase phone auth
-import { auth } from "@/lib/firebase";
+import { auth } from "/lib/firebase";
 import { RecaptchaVerifier, PhoneAuthProvider, updatePhoneNumber } from "firebase/auth";
 
 export default function AccountPage() {

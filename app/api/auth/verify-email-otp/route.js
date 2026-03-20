@@ -6,10 +6,10 @@
 // 5. Mark emailVerified = true in Firebase via Admin SDK
 
 import { NextResponse }  from "next/server";
-import { adminAuth }     from "@/lib/firebaseAdmin";
-import connectDB         from "@/lib/mongodb";
-import User              from "@/models/User";
-import OtpToken          from "@/models/OtpToken";
+import { adminAuth }     from "/lib/firebaseAdmin";
+import connectDB         from "/lib/mongodb";
+import User              from "/models/User";
+import OtpToken          from "/models/OtpToken";
 
 export async function POST(request) {
   try {
