@@ -253,14 +253,68 @@ import { motion } from "framer-motion";
 import { Eye, EyeOff, Mail, Lock, AlertCircle, ArrowRight } from "lucide-react";
 import { useAuth } from "/contexts/AuthContext"; // ✅ FIX 1: correct alias import path
 
+// ✅ FIELD COMPONENT (ONLY ONCE, OUTSIDE)
+function Field({
+  icon: Icon,
+  name,
+  type,
+  placeholder,
+  toggle,
+  form,
+  setForm,
+  setErrors,
+  errors,
+  setAuthError,
+  showPw,
+  setShowPw
+}) {
+  return (
+    <div>
+      <label className="block text-[10px] mb-2">
+        {name === "email" ? "Email Address" : "Password"}
+      </label>
+
+      <div className="relative">
+        <Icon size={15} className="absolute left-0 top-1/2 -translate-y-1/2 text-stone-300" />
+
+        <input
+          type={type}
+          value={form[name]}
+          onChange={(e) => {
+            setForm((p) => ({ ...p, [name]: e.target.value }));
+            setErrors((p) => ({ ...p, [name]: "" }));
+            setAuthError("");
+          }}
+          placeholder={placeholder}
+          className={`w-full border-b bg-transparent py-3 pl-6 text-sm focus:outline-none ${errors[name] ? "border-red-400" : "border-stone-200 focus:border-stone-700"
+            }`}
+        />
+
+        {toggle && (
+          <button
+            type="button"
+            onClick={() => setShowPw((p) => !p)}
+            className="absolute right-0 top-1/2 -translate-y-1/2"
+          >
+            {showPw ? <EyeOff size={15} /> : <Eye size={15} />}
+          </button>
+        )}
+      </div>
+
+      {errors[name] && <p className="text-xs text-red-500 mt-1">{errors[name]}</p>}
+    </div>
+  );
+}
+
+
 export default function LoginPage() {
   const router = useRouter();
   const { loginWithEmail, loginWithGoogle, isLoggedIn, loading, authError, setAuthError } = useAuth();
 
-  const [form,          setForm]          = useState({ email: "", password: "" });
-  const [errors,        setErrors]        = useState({});
-  const [showPw,        setShowPw]        = useState(false);
-  const [submitting,    setSubmitting]    = useState(false);
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [errors, setErrors] = useState({});
+  const [showPw, setShowPw] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
 
   // Redirect if already logged in
@@ -294,41 +348,42 @@ export default function LoginPage() {
     if (result.success) router.push("/account");
   };
 
-  const Field = ({ icon: Icon, name, type, placeholder, toggle }) => (
-    <div>
-      <label className="block font-body text-[10px] tracking-[0.2em] uppercase text-stone-500 mb-2">
-        {name === "email" ? "Email Address" : "Password"}
-      </label>
-      <div className="relative">
-        <Icon size={15} className="absolute left-0 top-1/2 -translate-y-1/2 text-stone-300" />
-        <input
-          type={type}
-          value={form[name]}
-          onChange={(e) => {
-            setForm((p) => ({ ...p, [name]: e.target.value }));
-            setErrors((p) => ({ ...p, [name]: "" }));
-            setAuthError("");
-          }}
-          placeholder={placeholder}
-          className={`w-full border-b bg-transparent py-3 pl-6 font-body text-sm text-stone-900 placeholder:text-stone-300 focus:outline-none transition-colors ${
-            errors[name] ? "border-red-400" : "border-stone-200 focus:border-stone-700"
-          }`}
-        />
-        {toggle && (
-          <button
-            type="button"
-            onClick={() => setShowPw((p) => !p)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 text-stone-300 hover:text-stone-600 transition-colors"
-          >
-            {showPw ? <EyeOff size={15} /> : <Eye size={15} />}
-          </button>
-        )}
-      </div>
-      {errors[name] && (
-        <p className="font-body text-xs text-red-500 mt-1.5">{errors[name]}</p>
-      )}
-    </div>
-  );
+  // const Field = ({ icon: Icon, name, type, placeholder, toggle }) => 
+  //   (
+  //   <div>
+  //     <label className="block font-body text-[10px] tracking-[0.2em] uppercase text-stone-500 mb-2">
+  //       {name === "email" ? "Email Address" : "Password"}
+  //     </label>
+  //     <div className="relative">
+  //       <Icon size={15} className="absolute left-0 top-1/2 -translate-y-1/2 text-stone-300" />
+  //       <input
+  //         type={type}
+  //         value={form[name]}
+  //         onChange={(e) => {
+  //           setForm((p) => ({ ...p, [name]: e.target.value }));
+  //           setErrors((p) => ({ ...p, [name]: "" }));
+  //           setAuthError("");
+  //         }}
+  //         placeholder={placeholder}
+  //         className={`w-full border-b bg-transparent py-3 pl-6 font-body text-sm text-stone-900 placeholder:text-stone-300 focus:outline-none transition-colors ${
+  //           errors[name] ? "border-red-400" : "border-stone-200 focus:border-stone-700"
+  //         }`}
+  //       />
+  //       {toggle && (
+  //         <button
+  //           type="button"
+  //           onClick={() => setShowPw((p) => !p)}
+  //           className="absolute right-0 top-1/2 -translate-y-1/2 text-stone-300 hover:text-stone-600 transition-colors"
+  //         >
+  //           {showPw ? <EyeOff size={15} /> : <Eye size={15} />}
+  //         </button>
+  //       )}
+  //     </div>
+  //     {errors[name] && (
+  //       <p className="font-body text-xs text-red-500 mt-1.5">{errors[name]}</p>
+  //     )}
+  //   </div>
+  // );
 
   if (loading) {
     return (
@@ -346,8 +401,8 @@ export default function LoginPage() {
       <div
         className="hidden lg:flex flex-col justify-between p-12 xl:p-16 relative overflow-hidden"
         style={{
-          backgroundImage:    "url(https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200&q=85)",
-          backgroundSize:     "cover",
+          backgroundImage: "url(https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200&q=85)",
+          backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
@@ -443,6 +498,11 @@ export default function LoginPage() {
               name="email"
               type="email"
               placeholder="you@example.com"
+              form={form}
+              setForm={setForm}
+              setErrors={setErrors}
+              errors={errors}
+              setAuthError={setAuthError}
             />
             <Field
               icon={Lock}
@@ -450,6 +510,13 @@ export default function LoginPage() {
               type={showPw ? "text" : "password"}
               placeholder="Your password"
               toggle
+              form={form}
+              setForm={setForm}
+              setErrors={setErrors}
+              errors={errors}
+              setAuthError={setAuthError}
+              showPw={showPw}
+              setShowPw={setShowPw}
             />
 
             <div className="flex justify-end">
@@ -488,10 +555,10 @@ export default function LoginPage() {
 // ── Forgot password inline widget ─────────────────────────────────────────────
 function ForgotPassword({ email }) {
   const { resetPassword } = useAuth();
-  const [open, setOpen]   = useState(false);
-  const [addr, setAddr]   = useState(email || "");
-  const [sent, setSent]   = useState(false);
-  const [err,  setErr]    = useState("");
+  const [open, setOpen] = useState(false);
+  const [addr, setAddr] = useState(email || "");
+  const [sent, setSent] = useState(false);
+  const [err, setErr] = useState("");
 
   const handle = async () => {
     if (!addr || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr)) {
